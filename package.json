@@ -1,0 +1,29 @@
+{
+  "name": "nviktous-admin",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "serve": "nodemon app.js",
+    "client": "npm start --prefix client",
+    "dev-start": "concurrently \"nodemon app.js\" \"npm run client\"",
+    "client-start": "npm start --prefix client",
+    "server-start": "nodemon app.js",
+    "client-install": "npm install --prefix client",
+    "server": "nodemon app.js --exec babel-node --presets babel-preset-env",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.9.16"
+  },
+  "engines": {
+    "node": "12.16.2"
+  }
+}
