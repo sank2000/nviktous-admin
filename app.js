@@ -5,6 +5,8 @@ const mongoose = require("mongoose");
 const path = require('path');
 
 
+const data = require("./routes/data");
+
 
 const app = express();
 
@@ -14,6 +16,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.get("/", (req, res) => {
   res.send("working");
 })
+
+app.use("/data", data);
 
 
 if (process.env.NODE_ENV === 'production') {

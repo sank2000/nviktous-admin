@@ -1,0 +1,27 @@
+Form {
+    height: fit-content;
+    margin: 1rem 11%;
+}
+
+h2 {
+    margin-top: .5rem !important;
+    padding: 2%;
+}
+
+.MuiFormControl-root {
+    padding-bottom: 10px !important
+}
+
+.form-check {
+    padding-bottom: 10px;
+}
+
+.image-input{
+    width: 75% !important;
+    display: inline-block !important;
+    margin: 10px;
+}
+
+.textarea{ 
+    resize: none;
+}

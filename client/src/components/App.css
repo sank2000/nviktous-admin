@@ -1,0 +1,32 @@
+/* .App {
+  background-color: #f1f1f1;
+} */
+
+.cards {
+  margin: 10px;
+}
+
+.navbar {
+  justify-content: left !important;
+}
+
+/* .linechart {
+  margin: 1rem;
+  margin-bottom: 10px;
+}
+
+.column {
+  padding-bottom: 10px;
+}
+
+.chart{
+  margin: 1rem;
+}
+
+@media (max-width: 720px) {
+  .linechart, .chart{
+    width: auto;
+    margin-bottom: 10px;
+    padding: 0;
+  }
+} */
