@@ -2,16 +2,16 @@ import React from 'react'
 // import LineChart from './home/home-components/LineChart';
 // import BarChart from './home/home-components/BarChart';
 // import DoughnutChart from './home/home-components/DonutChart';
-import Cards from "./home/Cards";
+import Cards from "./Cards";
 // import Row from 'reactstrap/lib/Row';
 // import Col from 'reactstrap/lib/Col';
-import TopNavbar from './home/home-components/TopNavbar';
+import TopNavbar from './home-components/TopNavbar';
 // import {Card, CardBody, CardTitle} from 'reactstrap';
 
 function Home() {
-    return (
-        <div className="Home">
-            <TopNavbar />
+	return (
+		<div className="Home">
+			<TopNavbar />
 			<Cards />
 			{/* <div className="linechart">
 				<Row>
@@ -54,8 +54,8 @@ function Home() {
 					</Col>
 				</Row>
         	</div> */}
-        </div>
-    )
+		</div>
+	)
 }
 
 export default Home

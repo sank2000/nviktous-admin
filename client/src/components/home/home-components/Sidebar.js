@@ -22,7 +22,7 @@ const useStyles = makeStyles({
 
 export default function TemporaryDrawer() {
   const classes = useStyles();
-  const [state, setState] = React.useState({left: false});
+  const [state, setState] = React.useState({ left: false });
 
   const toggleDrawer = (anchor, open) => (event) => {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
@@ -35,12 +35,12 @@ export default function TemporaryDrawer() {
 
   function ListItemLink(props) {
     const { icon, primary, to } = props;
-  
+
     const renderLink = React.useMemo(
       () => React.forwardRef((itemProps, ref) => <RouterLink to={to} ref={ref} {...itemProps} />),
       [to],
     );
-  
+
     return (
       <li>
         <ListItem button component={renderLink}>
@@ -60,19 +60,19 @@ export default function TemporaryDrawer() {
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
     >
-          <List className="items">
-            <ListItemLink to="/" primary="Home" icon={<HomeRoundedIcon />} />
-            <ListItemLink to="/form" primary="Add Item" icon={<AddCircleRoundedIcon />} />
-            <ListItemLink to="/" primary="Products" icon={<DvrRoundedIcon />} />
-            <ListItemLink to="/" primary="Orders" icon={<ReceiptRoundedIcon />} />
-          </List>
-          <Divider />
-          <List className="items">
-            <ListItemLink to="/" primary="Home" icon={<HomeRoundedIcon />} />
-            <ListItemLink to="/form" primary="Add Item" icon={<AddCircleRoundedIcon />} />
-            <ListItemLink to="/" primary="Products" icon={<DvrRoundedIcon />} />
-            <ListItemLink to="/" primary="Orders" icon={<ReceiptRoundedIcon />} />
-          </List>
+      <List className="items">
+        <ListItemLink to="/" primary="Home" icon={<HomeRoundedIcon />} />
+        <ListItemLink to="/form" primary="Add Item" icon={<AddCircleRoundedIcon />} />
+        <ListItemLink to="/product" primary="Products" icon={<DvrRoundedIcon />} />
+        <ListItemLink to="/" primary="Orders" icon={<ReceiptRoundedIcon />} />
+      </List>
+      <Divider />
+      <List className="items">
+        <ListItemLink to="/" primary="Home" icon={<HomeRoundedIcon />} />
+        <ListItemLink to="/form" primary="Add Item" icon={<AddCircleRoundedIcon />} />
+        <ListItemLink to="/" primary="Products" icon={<DvrRoundedIcon />} />
+        <ListItemLink to="/" primary="Orders" icon={<ReceiptRoundedIcon />} />
+      </List>
     </div>
   );
 
@@ -80,7 +80,7 @@ export default function TemporaryDrawer() {
     <div>
       {['left'].map((anchor) => (
         <React.Fragment key={anchor}>
-          <IconButton onClick={toggleDrawer(anchor, true)} style={{outline:"none"}} > <MenuRoundedIcon style={{color:"white"}} /></IconButton>
+          <IconButton onClick={toggleDrawer(anchor, true)} style={{ outline: "none" }} > <MenuRoundedIcon style={{ color: "white" }} /></IconButton>
           <Drawer anchor={anchor} open={state[anchor]} onClose={toggleDrawer(anchor, false)}>
             {list(anchor)}
           </Drawer>
