@@ -8,13 +8,13 @@ function TR(props, ind) {
   return (
     <tr key={ind}>
       <th scope="row">{ind + 1}</th>
+      <td>{props.unique_id}</td>
+      <td>{props.account_Type}</td>
       <td>{props.name}</td>
-      <td><img src={props.img[0]} alt="" style={{ width: "40px", height: "40px" }}></img></td>
-      <td>{props.description}</td>
-      <td>{props.category}</td>
-      <td>{props.price}</td>
-      <td>{JSON.stringify(props.size)}</td>
-      <td>{props.discount}</td>
+      <td>{props.email}</td>
+      <td>{props.address}</td>
+      <td>{props.phn}</td>
+      <td>{props.pincode}</td>
     </tr>
   )
 }
@@ -23,12 +23,12 @@ function TR(props, ind) {
 
 export default () => {
 
-  const [product, setProduct] = useState([]);
+  const [detail, setDetail] = useState([]);
 
   useEffect(() => {
-    axios.get("/data/product")
+    axios.get("/data/user")
       .then(function (response) {
-        setProduct(response.data);
+        setDetail(response.data);
       })
       .catch(function (error) {
         console.log(error);
@@ -38,23 +38,23 @@ export default () => {
 
   return <>
     <TopNavbar />
-    <h2>Product Details</h2>
+    <h2>User Details</h2>
     <Table dark striped bordered responsive>
       <thead>
         <tr>
           <th>#</th>
+          <th>Unique ID</th>
+          <th>Type</th>
           <th>Name</th>
-          <th>Image</th>
-          <th>Description</th>
-          <th>Category</th>
-          <th>Price</th>
-          <th>Size</th>
-          <th>Discount</th>
+          <th>Email</th>
+          <th>Address</th>
+          <th>Phone</th>
+          <th>Pincode</th>
         </tr>
       </thead>
       <tbody>
         {
-          product.map(TR)
+          detail.map(TR)
         }
       </tbody>
     </Table>

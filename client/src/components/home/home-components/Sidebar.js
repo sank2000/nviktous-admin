@@ -13,6 +13,7 @@ import MenuRoundedIcon from '@material-ui/icons/MenuRounded';
 import DvrRoundedIcon from '@material-ui/icons/DvrRounded';
 import ReceiptRoundedIcon from '@material-ui/icons/ReceiptRounded';
 import AddCircleRoundedIcon from '@material-ui/icons/AddCircleRounded';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 
 const useStyles = makeStyles({
   list: {
@@ -62,9 +63,10 @@ export default function TemporaryDrawer() {
     >
       <List className="items">
         <ListItemLink to="/" primary="Home" icon={<HomeRoundedIcon />} />
+        <ListItemLink to="/" primary="Orders" icon={<ReceiptRoundedIcon />} />
         <ListItemLink to="/form" primary="Add Item" icon={<AddCircleRoundedIcon />} />
         <ListItemLink to="/product" primary="Products" icon={<DvrRoundedIcon />} />
-        <ListItemLink to="/" primary="Orders" icon={<ReceiptRoundedIcon />} />
+        <ListItemLink to="/user" primary="Users" icon={<AccountCircleIcon />} />
       </List>
       <Divider />
       <List className="items">
