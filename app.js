@@ -6,6 +6,7 @@ const path = require('path');
 
 
 const data = require("./routes/data");
+const product = require("./routes/product");
 
 
 const app = express();
@@ -13,11 +14,10 @@ const app = express();
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.get("/", (req, res) => {
-  res.send("working");
-})
 
 app.use("/data", data);
+
+app.use("/product", product);
 
 
 if (process.env.NODE_ENV === 'production') {

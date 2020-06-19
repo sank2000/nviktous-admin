@@ -3,7 +3,7 @@ import { Button, Form, FormGroup, Label, Input, CustomInput, FormFeedback, Input
 import Slider from '@material-ui/core/Slider';
 import "./Form.css"
 import TopNavbar from "../home/home-components/TopNavbar";
-
+import axios from "axios";
 
 import Grid from "@material-ui/core/Grid";
 
@@ -15,6 +15,14 @@ import Input2 from "@material-ui/core/Input";
 
 import IconButton from "@material-ui/core/IconButton";
 import AddCircleTwoToneIcon from "@material-ui/icons/AddCircleTwoTone";
+
+import Snackbar from '@material-ui/core/Snackbar';
+import MuiAlert from '@material-ui/lab/Alert';
+
+function Alert(props) {
+    return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
+
 
 
 function valuetext(value) {
@@ -28,6 +36,20 @@ function NewForm() {
     const [category, setCategory] = useState("mens apparel");
     const [cSelected, setCSelected] = useState([]);
     const [cat, setCat] = useState("");
+    const [open, setOpen] = useState(false);
+    const [msg, setMsg] = useState({
+        type: "",
+        content: ""
+    });
+
+
+    const handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+
+        setOpen(false);
+    };
 
     const onCheckboxBtnClick = selected => {
         const index = cSelected.indexOf(selected);
@@ -101,11 +123,19 @@ function NewForm() {
         validationSchema: ValidationSchema,
         onSubmit: values => {
             if (img.length === 0) {
-                console.log("No images");
+                setMsg({
+                    type: "error",
+                    content: "Please add atleast one image..."
+                });
+                setOpen(true);
                 return;
             }
             else if (cat.length === 0) {
-                console.log("No sizes");
+                setMsg({
+                    type: "error",
+                    content: "Please select avaliable sizes..."
+                });
+                setOpen(true);
                 return;
             }
             console.log({
@@ -114,7 +144,27 @@ function NewForm() {
                 discount: value,
                 size: cSelected,
                 category
-            })
+            });
+            let prms = new URLSearchParams(
+                {
+                    ...values,
+                    img: img,
+                    discount: value,
+                    size: cSelected,
+                    category
+                });
+            axios.post("/product/add", prms)
+                .then(function (response) {
+                    setMsg({
+                        type: "success",
+                        content: "Product Added Successfully"
+                    });
+                    setOpen(true);
+
+                })
+                .catch(function (error) {
+                    console.log(error);
+                })
         }
     });
 
@@ -278,6 +328,11 @@ function NewForm() {
                 </FormGroup>
                 <Button type="submit">Submit</Button>
             </Form>
+            <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+                <Alert onClose={handleClose} severity={msg.type}>
+                    {msg.content}
+                </Alert>
+            </Snackbar>
         </div>
     )
 }
