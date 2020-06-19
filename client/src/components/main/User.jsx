@@ -3,6 +3,8 @@ import { Table } from 'reactstrap';
 import TopNavbar from "../home/home-components/TopNavbar";
 import axios from "axios";
 
+import Loader from "../additional/Loader";
+
 
 function TR(props, ind) {
   return (
@@ -24,11 +26,13 @@ function TR(props, ind) {
 export default () => {
 
   const [detail, setDetail] = useState([]);
+  const [load, setLoad] = useState(true);
 
   useEffect(() => {
     axios.get("/data/user")
       .then(function (response) {
         setDetail(response.data);
+        setLoad(false);
       })
       .catch(function (error) {
         console.log(error);
@@ -38,26 +42,28 @@ export default () => {
 
   return <>
     <TopNavbar />
-    <h2>User Details</h2>
-    <Table dark striped bordered responsive>
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>Unique ID</th>
-          <th>Type</th>
-          <th>Name</th>
-          <th>Email</th>
-          <th>Address</th>
-          <th>Phone</th>
-          <th>Pincode</th>
-        </tr>
-      </thead>
-      <tbody>
-        {
-          detail.map(TR)
-        }
-      </tbody>
-    </Table>
+    {load ? <Loader /> : <>
+      <h2>User Details</h2>
+      <Table dark striped bordered responsive>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Unique ID</th>
+            <th>Type</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Address</th>
+            <th>Phone</th>
+            <th>Pincode</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            detail.map(TR)
+          }
+        </tbody>
+      </Table>
+    </>}
   </>
 
 }

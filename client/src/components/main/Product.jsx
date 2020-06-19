@@ -3,6 +3,8 @@ import { Table } from 'reactstrap';
 import TopNavbar from "../home/home-components/TopNavbar";
 import axios from "axios";
 
+import Loader from "../additional/Loader";
+
 
 function TR(props, ind) {
   return (
@@ -24,11 +26,13 @@ function TR(props, ind) {
 export default () => {
 
   const [product, setProduct] = useState([]);
+  const [load, setLoad] = useState(true);
 
   useEffect(() => {
     axios.get("/data/product")
       .then(function (response) {
         setProduct(response.data);
+        setLoad(false);
       })
       .catch(function (error) {
         console.log(error);
@@ -38,26 +42,28 @@ export default () => {
 
   return <>
     <TopNavbar />
-    <h2>Product Details</h2>
-    <Table dark striped bordered responsive>
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>Name</th>
-          <th>Image</th>
-          <th>Description</th>
-          <th>Category</th>
-          <th>Price</th>
-          <th>Size</th>
-          <th>Discount</th>
-        </tr>
-      </thead>
-      <tbody>
-        {
-          product.map(TR)
-        }
-      </tbody>
-    </Table>
+    {load ? <Loader /> : <>
+      <h2>Product Details</h2>
+      <Table dark striped bordered responsive>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Image</th>
+            <th>Description</th>
+            <th>Category</th>
+            <th>Price</th>
+            <th>Size</th>
+            <th>Discount</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            product.map(TR)
+          }
+        </tbody>
+      </Table>
+    </>}
   </>
 
 }
