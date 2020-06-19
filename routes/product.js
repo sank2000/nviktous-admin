@@ -8,7 +8,11 @@ const Order = require('../model/order');
 
 
 router.post('/add', (req, res) => {
-  console.log(req.body);
+  console.log({
+    ...req.body,
+    size: JSON.parse(req.body.size),
+    img: JSON.parse(req.body.img)
+  })
   res.json({
     done: "true"
   });

@@ -148,9 +148,9 @@ function NewForm() {
             let prms = new URLSearchParams(
                 {
                     ...values,
-                    img: img,
+                    img: JSON.stringify(img),
                     discount: value,
-                    size: cSelected,
+                    size: JSON.stringify(cSelected),
                     category
                 });
             axios.post("/product/add", prms)
@@ -264,32 +264,64 @@ function NewForm() {
                 {cat === "kids" &&
                     <FormGroup check>
                         <Label check style={{ marginRight: "15px", marginLeft: "15px" }}>
-                            <Input type="checkbox" onClick={() => onCheckboxBtnClick("1-12")} />{" "}
-                                1-12
+                            <Input type="checkbox" onClick={() => onCheckboxBtnClick("6-12")} />{" "}
+                                6-12
                         </Label>
                         <Label check style={{ marginRight: "15px", marginLeft: "15px" }}>
-                            <Input type="checkbox" onClick={() => onCheckboxBtnClick("13-24")} />{" "}
-                               13-24
+                            <Input type="checkbox" onClick={() => onCheckboxBtnClick("18-24")} />{" "}
+                               18-24
                         </Label>
                         <Label check style={{ marginRight: "15px", marginLeft: "15px" }}>
-                            <Input type="checkbox" onClick={() => onCheckboxBtnClick("1-2")} />{" "}
-                                1-2
+                            <Input type="checkbox" onClick={() => onCheckboxBtnClick("3-4")} />{" "}
+                                3-4
+                        </Label>
+                        <Label check style={{ marginRight: "15px", marginLeft: "15px" }}>
+                            <Input type="checkbox" onClick={() => onCheckboxBtnClick("5-6")} />{" "}
+                                5-6
+                        </Label>
+                        <Label check style={{ marginRight: "15px", marginLeft: "15px" }}>
+                            <Input type="checkbox" onClick={() => onCheckboxBtnClick("7-8")} />{" "}
+                                7-8
+                        </Label>
+                        <Label check style={{ marginRight: "15px", marginLeft: "15px" }}>
+                            <Input type="checkbox" onClick={() => onCheckboxBtnClick("9-10")} />{" "}
+                                9-10
+                        </Label>
+                        <Label check style={{ marginRight: "15px", marginLeft: "15px" }}>
+                            <Input type="checkbox" onClick={() => onCheckboxBtnClick("11-12")} />{" "}
+                                11-12
+                        </Label>
+                        <Label check style={{ marginRight: "15px", marginLeft: "15px" }}>
+                            <Input type="checkbox" onClick={() => onCheckboxBtnClick("13-14")} />{" "}
+                                13-14
                         </Label>
                     </FormGroup>
                 }
                 {cat === "adult" &&
                     <FormGroup check>
                         <Label check style={{ marginRight: "15px", marginLeft: "15px" }}>
-                            <Input type="checkbox" onClick={() => onCheckboxBtnClick("sm")} />{" "}
-                                sm
+                            <Input type="checkbox" onClick={() => onCheckboxBtnClick("S")} />{" "}
+                                S
                         </Label>
                         <Label check style={{ marginRight: "15px", marginLeft: "15px" }}>
-                            <Input type="checkbox" onClick={() => onCheckboxBtnClick("md")} />{" "}
-                                md
+                            <Input type="checkbox" onClick={() => onCheckboxBtnClick("M")} />{" "}
+                                M
                         </Label>
                         <Label check style={{ marginRight: "15px", marginLeft: "15px" }}>
-                            <Input type="checkbox" onClick={() => onCheckboxBtnClick("lg")} />{" "}
-                                lg
+                            <Input type="checkbox" onClick={() => onCheckboxBtnClick("L")} />{" "}
+                                L
+                        </Label>
+                        <Label check style={{ marginRight: "15px", marginLeft: "15px" }}>
+                            <Input type="checkbox" onClick={() => onCheckboxBtnClick("XL")} />{" "}
+                                XL
+                        </Label>
+                        <Label check style={{ marginRight: "15px", marginLeft: "15px" }}>
+                            <Input type="checkbox" onClick={() => onCheckboxBtnClick("XXL")} />{" "}
+                                XXL
+                        </Label>
+                        <Label check style={{ marginRight: "15px", marginLeft: "15px" }}>
+                            <Input type="checkbox" onClick={() => onCheckboxBtnClick("XXXL")} />{" "}
+                                XXXL
                         </Label>
                     </FormGroup>
 
