@@ -63,7 +63,7 @@ export default function TemporaryDrawer() {
     >
       <List className="items">
         <ListItemLink to="/" primary="Home" icon={<HomeRoundedIcon />} />
-        <ListItemLink to="/" primary="Orders" icon={<ReceiptRoundedIcon />} />
+        <ListItemLink to="/order" primary="Orders" icon={<ReceiptRoundedIcon />} />
         <ListItemLink to="/form" primary="Add Item" icon={<AddCircleRoundedIcon />} />
         <ListItemLink to="/product" primary="Products" icon={<DvrRoundedIcon />} />
         <ListItemLink to="/user" primary="Users" icon={<AccountCircleIcon />} />
