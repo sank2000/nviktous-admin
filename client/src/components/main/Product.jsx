@@ -4,11 +4,20 @@ import axios from "axios";
 
 import Loader from "../additional/Loader";
 
+import VisibilityTwoToneIcon from '@material-ui/icons/VisibilityTwoTone';
+
+import IconButton from '@material-ui/core/IconButton';
+
 
 function TR(props, ind) {
   return (
     <tr key={ind}>
       <th scope="row">{ind + 1}</th>
+      <td>
+        <IconButton href={`/product/${props._id}`}>
+          <VisibilityTwoToneIcon color="primary" fontSize="small" />
+        </IconButton>
+      </td>
       <td>{props.name}</td>
       <td><img src={props.img[0]} alt="" style={{ width: "40px", height: "40px" }}></img></td>
       <td>{props.description}</td>
@@ -46,6 +55,7 @@ export default () => {
         <thead>
           <tr>
             <th>#</th>
+            <th></th>
             <th>Name</th>
             <th>Image</th>
             <th>Description</th>

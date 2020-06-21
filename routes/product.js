@@ -18,7 +18,19 @@ router.post('/add', (req, res) => {
   });
 });
 
-
+router.post("/findone", function (req, res) {
+  Product.findById(req.body.id, (err, result) => {
+    if (err) {
+      if (err instanceof mongoose.CastError) {
+        res.send([]);
+      }
+      console.log(err); return;
+    }
+    else {
+      res.send(result);
+    }
+  })
+})
 
 
 

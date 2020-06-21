@@ -7,18 +7,20 @@ import Card from "./card";
 import axios from "axios";
 import Loading from "../additional/Loader";
 
+import Container2 from "../containers/FlexContainer"
+
 
 
 function Empty() {
   return (
-    <Container withAppBar>
-      <img src='../images/empty.png' style={{ maxWidth: '80vw', maxHeight: '50vh', padding: '1rem' }} alt='kfjngdf' />
+    <Container2 withAppBar>
+      <img src='./images/empty.png' style={{ maxWidth: '80vw', maxHeight: '50vh', padding: '1rem' }} alt='no order' />
       <Typography variant="h2">No Orders!</Typography>
-    </Container>
+    </Container2>
   );
 }
 
-export default () => {
+export default ({ match }) => {
   const [load, setLoad] = useState(true);
   const [card, setCard] = useState([]);
   const [empty, setEmpty] = useState(true);
@@ -26,8 +28,10 @@ export default () => {
   useEffect(() => {
     axios.get("/order")
       .then(function (response) {
-        if (response.data.length !== 0) {
-          setCard(response.data);
+        let res = response.data.filter((val) => val.status.length === parseInt(match.params.id));
+        if (res.length !== 0) {
+          setCard(res)
+          // setCard(response.data);
           setEmpty(false);
         }
         setLoad(false);
@@ -36,11 +40,11 @@ export default () => {
         console.log(error);
       })
 
-  }, [])
+  }, [match.params.id])
 
 
   return (<>
-    {load ? <Loading /> : empty ? <Empty /> : <>
+    {load ? <Loading route /> : empty ? <Empty /> : <>
       <Container maxWidth="sm">
         {card.map((value, ind) => {
           return <Card key={ind} items={value.item} payment={value.payment} user_id={value.user_id} address={value.address} price={value.amount} id={value._id} status={value.status} />

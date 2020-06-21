@@ -1,11 +1,16 @@
 import React from "react";
 import RingLoader from "react-spinners/RingLoader";
 import Container from "../containers/FlexContainer";
-export default function App() {
+export default function App(props) {
+
+  let src = "./images/logo.png";
+  if (props.route) {
+    src = "." + src;
+  }
   return (
     <Container withAppBar>
       <img
-        src="./images/logo.png"
+        src={src}
         alt=""
         style={{
           width: "50px",

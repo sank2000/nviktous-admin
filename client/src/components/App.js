@@ -8,19 +8,22 @@ import User from "./main/User";
 
 import Order from "./order/main";
 
-import TopNavBar from "./home/home-components/TopNavbar"
+import TopNavBar from "./home/home-components/TopNavbar";
+
+import ProductView from "./main/ProductView";
 
 function App() {
 	return (
 		<div className="App">
 			<Router>
-			  <TopNavBar />
+				<TopNavBar />
 				<Switch>
 					<Route path="/" exact component={Home} />
-					<Route path="/form" component={NewForm} />
-					<Route path="/product" component={Product} />
-					<Route path="/order" component={Order} />
-					<Route path="/user" component={User} />
+					<Route path="/form" exact component={NewForm} />
+					<Route path="/product" exact component={Product} />
+					<Route path="/product/:itemId" exact component={ProductView} />
+					<Route path="/order/:id" exact component={Order} />
+					<Route path="/user" exact component={User} />
 				</Switch>
 			</Router>
 
