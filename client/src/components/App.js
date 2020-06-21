@@ -8,10 +8,13 @@ import User from "./main/User";
 
 import Order from "./order/main";
 
+import TopNavBar from "./home/home-components/TopNavbar"
+
 function App() {
 	return (
 		<div className="App">
 			<Router>
+			  <TopNavBar />
 				<Switch>
 					<Route path="/" exact component={Home} />
 					<Route path="/form" component={NewForm} />

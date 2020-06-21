@@ -2,7 +2,7 @@ import React, { useState, Fragment } from "react";
 import { Button, Form, FormGroup, Label, Input, CustomInput, FormFeedback, InputGroup, InputGroupAddon, InputGroupText } from 'reactstrap';
 import Slider from '@material-ui/core/Slider';
 import "./Form.css"
-import TopNavbar from "../home/home-components/TopNavbar";
+
 import axios from "axios";
 
 import Grid from "@material-ui/core/Grid";
@@ -172,7 +172,6 @@ function NewForm() {
 
     return (
         <div className="form">
-            <TopNavbar />
             <h2>Product Details</h2>
             <Form onSubmit={formik.handleSubmit}>
                 <FormGroup>

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Table } from 'reactstrap';
-import TopNavbar from "../home/home-components/TopNavbar";
 import axios from "axios";
 
 import Loader from "../additional/Loader";
@@ -41,7 +40,6 @@ export default () => {
   }, [])
 
   return <>
-    <TopNavbar />
     {load ? <Loader /> : <>
       <h2>Product Details</h2>
       <Table dark striped bordered responsive>

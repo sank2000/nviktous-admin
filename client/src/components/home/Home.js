@@ -5,13 +5,11 @@ import React from 'react'
 import Cards from "./Cards";
 // import Row from 'reactstrap/lib/Row';
 // import Col from 'reactstrap/lib/Col';
-import TopNavbar from './home-components/TopNavbar';
 // import {Card, CardBody, CardTitle} from 'reactstrap';
 
 function Home() {
 	return (
 		<div className="Home">
-			<TopNavbar />
 			<Cards />
 			{/* <div className="linechart">
 				<Row>
