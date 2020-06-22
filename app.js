@@ -8,6 +8,7 @@ const path = require('path');
 const data = require("./routes/data");
 const product = require("./routes/product");
 const order = require("./routes/order");
+const user = require("./routes/user");
 
 
 const app = express();
@@ -21,6 +22,8 @@ app.use("/data", data);
 app.use("/product", product);
 
 app.use("/order", order);
+
+app.use("/user", user);
 
 
 if (process.env.NODE_ENV === 'production') {

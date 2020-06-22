@@ -140,6 +140,7 @@ export default (props) => {
       .then(function (response) {
         console.log(response.data);
         setLoad(false);
+        window.location.reload();
       })
       .catch(function (error) {
         console.log(error);

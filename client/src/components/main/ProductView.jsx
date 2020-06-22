@@ -14,7 +14,8 @@ import ProductViewer from '../view/ProductViewer';
 
 import FlexContainer from '../containers/FlexContainer';
 
-
+import Button from '@material-ui/core/Button';
+import ButtonGroup from '@material-ui/core/ButtonGroup';
 
 
 
@@ -209,6 +210,14 @@ function Product({ match }) {
                         </Typography>
                       </Grid>
                     </Grid>
+                  </Grid>
+                  <Grid item xs={12}>
+                    <ButtonGroup color="secondary" variant="contained">
+                      <Button>Discount</Button>
+                      <Button>No stock</Button>
+                      <Button>Edit</Button>
+                      <Button>Delete</Button>
+                    </ButtonGroup>
                   </Grid>
                 </Grid>
               </Container>

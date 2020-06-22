@@ -6,6 +6,13 @@ const Product = require('../model/product');
 const User = require('../model/user');
 const Order = require('../model/order');
 
+router.get('/', (req, res) => {
+  Product.find({}, (err, result) => {
+    if (err) { console.log(err); return; }
+    res.send(result);
+  })
+});
+
 
 router.post('/add', (req, res) => {
   console.log({
@@ -30,7 +37,16 @@ router.post("/findone", function (req, res) {
       res.send(result);
     }
   })
+});
+
+
+router.post("/search", function (req, res) {
+  Product.find({ name: { '$regex': req.body.search, $options: 'i' } }, (err, result) => {
+    if (err) { console.log(err); return; }
+    res.send(result);
+  })
 })
+
 
 
 
