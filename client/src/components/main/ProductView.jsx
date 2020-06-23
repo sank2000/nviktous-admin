@@ -17,7 +17,13 @@ import FlexContainer from '../containers/FlexContainer';
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 
+import Avail from "./Avail";
 
+import Discount from "./Discount";
+
+import Edit from "./Edit";
+
+import Delete from "./Delete";
 
 function Empty() {
   return (
@@ -128,6 +134,13 @@ function Product({ match }) {
   const [empty, setEmpty] = useState(false);
   const [images, setImages] = useState([]);
 
+  const [ava, setAva] = useState(false);
+
+  const [dis, setDis] = useState(false);
+
+  const [edit, setEdit] = useState(false);
+
+  const [del, setDel] = useState(false);
 
   useEffect(() => {
     let prms = new URLSearchParams({ id: match.params.itemId });
@@ -178,7 +191,7 @@ function Product({ match }) {
                       <Typography variant="h6">{product.category}</Typography>
                     </Grid>
                     <Grid item>
-                      <Typography variant="h6" color="secondary">In stock</Typography>
+                      <Typography variant="h6" color="secondary">{product.available ? "In Stock" : "No Stock"}</Typography>
                     </Grid>
                     <Grid item>
                       <Typography variant="h6">Available sizes</Typography>
@@ -192,9 +205,12 @@ function Product({ match }) {
                       </Typography>
                       {
                         product.discount > 0 &&
-                        <Typography className={classes.originalPrice} variant="h6" component="p">
-                          ₹{product.price}
-                        </Typography>
+                        <>
+                          <Typography className={classes.originalPrice} variant="h6" component="p">
+                            ₹{product.price}
+                          </Typography>
+                          <span style={{ color: "red" }}>{product.discount} % off</span>
+                        </>
                       }
                     </Grid>
                     <Grid item xs={12}>
@@ -211,17 +227,27 @@ function Product({ match }) {
                       </Grid>
                     </Grid>
                   </Grid>
-                  <Grid item xs={12}>
+                  <Grid item xs={12} style={{ paddingBottom: "35px" }}>
+                    <Typography variant="h5" component="h4">
+                      Actions
+                    </Typography>
                     <ButtonGroup color="secondary" variant="contained">
-                      <Button>Discount</Button>
-                      <Button>No stock</Button>
-                      <Button>Edit</Button>
-                      <Button>Delete</Button>
+                      <Button onClick={() => setDis(true)}>Discount</Button>
+                      <Button onClick={() => setAva(true)}>{product.available ? "No stock" : " Available"}</Button>
+                      <Button onClick={() => setEdit(true)}>Edit</Button>
+                      <Button onClick={() => setDel(true)}>Delete</Button>
                     </ButtonGroup>
                   </Grid>
                 </Grid>
               </Container>
             </div>
+            {ava && <Avail setAva={setAva} id={match.params.itemId} stock={!product.available} />}
+
+            {dis && <Discount setDis={setDis} id={match.params.itemId} discount={product.discount} />}
+
+            {edit && <Edit setEdit={setEdit} name={product.name} cat={product.size[0].includes("-") ? "kids" : "adult"} size={product.size} description={product.description} price={product.price} id={match.params.itemId} />}
+
+            {del && <Delete setDel={setDel} id={match.params.itemId} />}
           </ >
       }
     </>

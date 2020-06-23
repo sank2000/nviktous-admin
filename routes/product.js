@@ -15,14 +15,23 @@ router.get('/', (req, res) => {
 
 
 router.post('/add', (req, res) => {
-  console.log({
-    ...req.body,
-    size: JSON.parse(req.body.size),
-    img: JSON.parse(req.body.img)
+  const P = new Product(
+    {
+      ...req.body,
+      size: JSON.parse(req.body.size),
+      img: JSON.parse(req.body.img)
+    }
+  );
+
+  P.save((err) => {
+    if (err) { console.log(err); return; }
+    else {
+      res.json({
+        done: "true"
+      });
+    }
   })
-  res.json({
-    done: "true"
-  });
+
 });
 
 router.post("/findone", function (req, res) {
@@ -47,6 +56,55 @@ router.post("/search", function (req, res) {
   })
 })
 
+
+router.post("/update", function (req, res) {
+  const { id, ...data } = req.body;
+  Product.findByIdAndUpdate(id, data, (err, result) => {
+    if (err) {
+      console.log(err); return;
+    }
+    else {
+      res.json(
+        {
+          done: true
+        }
+      )
+    }
+  })
+});
+
+router.post("/update2", function (req, res) {
+  const { id, size, ...data } = req.body;
+  let s = JSON.parse(size);
+  Product.findByIdAndUpdate(id, { ...data, size: s }, (err, result) => {
+    if (err) {
+      console.log(err); return;
+    }
+    else {
+      res.json(
+        {
+          done: true
+        }
+      )
+    }
+  })
+});
+
+
+router.post("/delete", function (req, res) {
+  Product.findByIdAndDelete(req.body.id, (err, docs) => {
+    if (err) {
+      console.log(err); return;
+    }
+    else {
+      res.json(
+        {
+          done: true
+        }
+      )
+    }
+  });
+});
 
 
 

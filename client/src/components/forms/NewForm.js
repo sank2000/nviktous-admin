@@ -19,6 +19,10 @@ import AddCircleTwoToneIcon from "@material-ui/icons/AddCircleTwoTone";
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
 
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+
 function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
@@ -41,6 +45,12 @@ function NewForm() {
         type: "",
         content: ""
     });
+
+
+    const handleChangeR = (event) => {
+        setCSelected([]);
+        setCat(event.target.value);
+    };
 
 
     const handleClose = (event, reason) => {
@@ -160,6 +170,7 @@ function NewForm() {
                         content: "Product Added Successfully"
                     });
                     setOpen(true);
+                    window.open("/product", "_self");
 
                 })
                 .catch(function (error) {
@@ -168,6 +179,12 @@ function NewForm() {
         }
     });
 
+
+    function chkBOx(value, ind) {
+        return <Label key={ind} check style={{ marginRight: "15px", marginLeft: "15px" }}>
+            <Input type="checkbox" checked={cSelected.includes(value)} onClick={() => onCheckboxBtnClick(value)} />{value}
+        </Label>
+    }
 
 
     return (
@@ -242,88 +259,23 @@ function NewForm() {
                     </InputGroup>
                 </FormGroup>
 
-                <FormGroup tag="fieldset" onChange={e => {
-                    setCat(e.target.value);
-                    setCSelected([]);
-                }
-                }>
+                <FormGroup>
                     <legend>Size</legend>
-                    <FormGroup check>
-                        <Label check>
-                            <Input type="radio" name="size" value="kids" /> For Kids
-                         </Label>
-                    </FormGroup>
-                    <FormGroup check>
-                        <Label check>
-                            <Input type="radio" name="size" value="adult" /> For Adults
-                        </Label>
-                    </FormGroup>
+                    <RadioGroup aria-label="size" name="size" value={cat} onChange={handleChangeR}>
+                        <FormControlLabel value="kids" control={<Radio />} label="For Kids" />
+                        <FormControlLabel value="adult" control={<Radio />} label="For Adults" />
+                    </RadioGroup>
                 </FormGroup>
                 <p>Size: {JSON.stringify(cSelected)}</p>
                 {cat === "kids" &&
                     <FormGroup check>
-                        <Label check style={{ marginRight: "15px", marginLeft: "15px" }}>
-                            <Input type="checkbox" onClick={() => onCheckboxBtnClick("6-12")} />{" "}
-                                6-12
-                        </Label>
-                        <Label check style={{ marginRight: "15px", marginLeft: "15px" }}>
-                            <Input type="checkbox" onClick={() => onCheckboxBtnClick("18-24")} />{" "}
-                               18-24
-                        </Label>
-                        <Label check style={{ marginRight: "15px", marginLeft: "15px" }}>
-                            <Input type="checkbox" onClick={() => onCheckboxBtnClick("3-4")} />{" "}
-                                3-4
-                        </Label>
-                        <Label check style={{ marginRight: "15px", marginLeft: "15px" }}>
-                            <Input type="checkbox" onClick={() => onCheckboxBtnClick("5-6")} />{" "}
-                                5-6
-                        </Label>
-                        <Label check style={{ marginRight: "15px", marginLeft: "15px" }}>
-                            <Input type="checkbox" onClick={() => onCheckboxBtnClick("7-8")} />{" "}
-                                7-8
-                        </Label>
-                        <Label check style={{ marginRight: "15px", marginLeft: "15px" }}>
-                            <Input type="checkbox" onClick={() => onCheckboxBtnClick("9-10")} />{" "}
-                                9-10
-                        </Label>
-                        <Label check style={{ marginRight: "15px", marginLeft: "15px" }}>
-                            <Input type="checkbox" onClick={() => onCheckboxBtnClick("11-12")} />{" "}
-                                11-12
-                        </Label>
-                        <Label check style={{ marginRight: "15px", marginLeft: "15px" }}>
-                            <Input type="checkbox" onClick={() => onCheckboxBtnClick("13-14")} />{" "}
-                                13-14
-                        </Label>
+                        {["6-12", "18-24", "3-4", "5-6", "7-8", "9-10", "11-12", "13-14"].map(chkBOx)}
                     </FormGroup>
                 }
                 {cat === "adult" &&
                     <FormGroup check>
-                        <Label check style={{ marginRight: "15px", marginLeft: "15px" }}>
-                            <Input type="checkbox" onClick={() => onCheckboxBtnClick("S")} />{" "}
-                                S
-                        </Label>
-                        <Label check style={{ marginRight: "15px", marginLeft: "15px" }}>
-                            <Input type="checkbox" onClick={() => onCheckboxBtnClick("M")} />{" "}
-                                M
-                        </Label>
-                        <Label check style={{ marginRight: "15px", marginLeft: "15px" }}>
-                            <Input type="checkbox" onClick={() => onCheckboxBtnClick("L")} />{" "}
-                                L
-                        </Label>
-                        <Label check style={{ marginRight: "15px", marginLeft: "15px" }}>
-                            <Input type="checkbox" onClick={() => onCheckboxBtnClick("XL")} />{" "}
-                                XL
-                        </Label>
-                        <Label check style={{ marginRight: "15px", marginLeft: "15px" }}>
-                            <Input type="checkbox" onClick={() => onCheckboxBtnClick("XXL")} />{" "}
-                                XXL
-                        </Label>
-                        <Label check style={{ marginRight: "15px", marginLeft: "15px" }}>
-                            <Input type="checkbox" onClick={() => onCheckboxBtnClick("XXXL")} />{" "}
-                                XXXL
-                        </Label>
+                        {["s", "m", "l", "xl", "xxl", "xxxl"].map(chkBOx)}
                     </FormGroup>
-
                 }
                 <FormGroup>
                     <Label for="discount">Discount</Label>
@@ -357,7 +309,7 @@ function NewForm() {
                         </Grid>
                     </Grid>
                 </FormGroup>
-                <Button type="submit">Submit</Button>
+                <Button outline color="primary" type="submit">Submit</Button>
             </Form>
             <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
                 <Alert onClose={handleClose} severity={msg.type}>
