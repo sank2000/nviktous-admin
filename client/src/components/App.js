@@ -5,7 +5,6 @@ import NewForm from './forms/NewForm';
 import Home from "./home/Home";
 import Product from "./main/Product";
 import User from "./main/User";
-import Login from "./login/Login"
 
 import Order from "./order/main";
 
@@ -21,7 +20,6 @@ function App() {
 				<Switch>
 					<Route path="/" exact component={Home} />
 					<Route path="/form" exact component={NewForm} />
-					<Route path="/login" exact component={Login} />
 					<Route path="/product" exact component={Product} />
 					<Route path="/product/:itemId" exact component={ProductView} />
 					<Route path="/order/:id" exact component={Order} />
