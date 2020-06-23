@@ -1,3 +1,69 @@
-.card-column {
+.card {
+    position: relative;
+    margin: 1rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.card:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: calc(-100% + 4px);
+    width: 100%;
+    height: 100%;
+    background: #FF7315;
+    z-index: 1;
+    transition: 0.5s ease-in-out;
+}
+
+.card:hover:before {
+    bottom: 0;
+}
+
+.card div {
+    position: relative;
+    z-index: 2;
+}
+
+.card div h2 {
+    margin-bottom: 10px;
+    font-size: 30px;
+    transition: 0.5s;
+    color: #777;
+}
+
+.card div p {
+    font-size: 18px;
+    transition: 0.5s;
+    color: #777;
+}
+
+.card div a {
+    margin-top: 20px;
+    font-size: 14px;
+    display: inline-block;
+    text-decoration: none;
+    transition: 0.5s;
+    background: #fff;
+    color: #777;
+    padding: 6px 10px;
+    font-weight: 600;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+}
+
+.card:hover div h2,
+.card:hover div p {
+  color: #fff;
+}
+
+.row {
     padding: 1rem;
+}
+
+@media(min-width:768px) and (max-width:992px){
+    .col-middle {
+        margin-left: 28%;
+        margin-right: 20%;
+    }
 }
