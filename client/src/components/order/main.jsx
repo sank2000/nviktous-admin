@@ -15,8 +15,8 @@ import NavBar from "../nav/TopNavbar";
 function Empty() {
   return (
     <Container2 withAppBar>
-      <img src='./images/empty.png' style={{ maxWidth: '80vw', maxHeight: '50vh', padding: '1rem' }} alt='no order' />
-      <Typography variant="h2">No Orders!</Typography>
+      <img src='../images/empty.png' style={{ maxWidth: '80vw', maxHeight: '50vh', padding: '1rem' }} alt='no order' />
+      <Typography variant="h4">No Orders!</Typography>
     </Container2>
   );
 }

@@ -225,7 +225,7 @@ function Product({ match }) {
                           Payment method
                         </Typography>
                         <Typography variant="h6" component="h4" color="textSecondary">
-                          <img src='../images/rupee.png' style={{ width: "35px", height: "35px" }} alt='rupee' /> cash on delivery
+                          <img src='../images/rupee.png' style={{ width: "35px", height: "35px" }} alt='₹' /> cash on delivery
                         </Typography>
                       </Grid>
                     </Grid>
@@ -234,7 +234,7 @@ function Product({ match }) {
                     <Typography variant="h5" component="h4">
                       Actions
                     </Typography>
-                    <ButtonGroup color="secondary" variant="contained">
+                    <ButtonGroup color="secondary" variant="contained" style={{ marginTop: "10px" }}>
                       <Button onClick={() => setDis(true)}>Discount</Button>
                       <Button onClick={() => setAva(true)}>{product.available ? "No stock" : " Available"}</Button>
                       <Button onClick={() => setEdit(true)}>Edit</Button>

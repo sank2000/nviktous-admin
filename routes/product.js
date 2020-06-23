@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+var mongoose = require('mongoose');
 
 
 const Product = require('../model/product');

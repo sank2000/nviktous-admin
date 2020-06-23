@@ -17,6 +17,8 @@ import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import NavBar from "../nav/TopNavbar";
 
+import Container from "../containers/FlexContainer";
+
 
 function TR(props, ind) {
   return (
@@ -40,9 +42,10 @@ function TR(props, ind) {
 
 function NoRecord() {
   return (
-    <Fragment>
+    <Container height="40vh">
+      <img src='./images/nodata.png' style={{ maxWidth: '80vw', maxHeight: '50vh', padding: '1rem' }} alt='404' />
       <h1>No Record Found !!!</h1>
-    </Fragment>
+    </Container>
   );
 }
 
