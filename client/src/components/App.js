@@ -8,8 +8,6 @@ import User from "./main/User";
 
 import Order from "./order/main";
 
-import TopNavBar from "./home/home-components/TopNavbar";
-
 import ProductView from "./main/ProductView";
 
 import AuthApi from "./auth/AuthApi";
@@ -67,7 +65,6 @@ function App() {
 			{load ? <Loading /> : <div className="App">
 				<AuthApi.Provider value={{ auth, setAuth }}>
 					<Router>
-						<TopNavBar />
 						<Switch>
 							<RouteRegistration path="/sign" exact component={Login} />
 							<RouteProtected path="/" exact component={Home} />

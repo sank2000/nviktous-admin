@@ -15,6 +15,7 @@ import SearchOutlinedIcon from "@material-ui/icons/SearchOutlined";
 
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
+import NavBar from "../nav/TopNavbar";
 
 
 function TR(props, ind) {
@@ -123,6 +124,7 @@ export default () => {
   }, [])
 
   return <>
+    <NavBar />
     {load ? <Loader /> : <>
       <Box display="flex">
         <Box p={2} flexGrow={1}>

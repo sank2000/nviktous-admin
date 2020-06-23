@@ -8,6 +8,7 @@ import axios from "axios";
 import Loading from "../additional/Loader";
 
 import Container2 from "../containers/FlexContainer"
+import NavBar from "../nav/TopNavbar";
 
 
 
@@ -44,6 +45,7 @@ export default ({ match }) => {
 
 
   return (<>
+    <NavBar />
     {load ? <Loading route /> : empty ? <Empty /> : <>
       <Container maxWidth="sm">
         {card.map((value, ind) => {

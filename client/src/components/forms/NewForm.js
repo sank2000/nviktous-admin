@@ -23,6 +23,8 @@ import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 
+import NavBar from "../nav/TopNavbar";
+
 function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
@@ -188,135 +190,138 @@ function NewForm() {
 
 
     return (
-        <div className="form">
-            <h2>Product Details</h2>
-            <Form onSubmit={formik.handleSubmit}>
-                <FormGroup>
-                    <Label for="name">Name</Label>
-                    <Input type="text" name="name" placeholder="Enter the product name."
-                        {...formik.getFieldProps("name")}
-                        invalid={
-                            formik.touched.name && formik.errors.name !== undefined
-                        }
-                    />
-                    <FormFeedback>
-                        {formik.touched.name && formik.errors.name}
-                    </FormFeedback>
-                </FormGroup>
-                <FormGroup>
-                    <Label for="description">Description</Label>
-                    <Input type="textarea" className="textarea" name="description" placeholder="Add Description." rows="3"
-                        {...formik.getFieldProps("description")}
-                        invalid={
-                            formik.touched.description && formik.errors.description !== undefined
-                        }
-                    />
-                    <FormFeedback>
-                        {formik.touched.description && formik.errors.description}
-                    </FormFeedback>
-                </FormGroup>
-                <FormGroup>
-                    <Label for="category">Category</Label>
-                    <CustomInput
-                        type="select"
-                        name="categorySelect"
-                        id="customInput"
-                        onChange={e => setCategory(e.target.value)}
-                        value={category}
-                    >
-                        <option value="mens apparel">Men's Apperal</option>
-                        <option value="kids apparel">Kid's Apperal</option>
-                        <option value="womens apparel">Women's Apperal</option>
-                    </CustomInput>
-                </FormGroup>
-                <FormGroup>
-                    <Label for="image">Image</Label>
-                    <>
-                        {count.map(Tf)}
-                        <IconButton
-                            style={{ outline: "none" }}
-                            onClick={() => setCount(old => [...old, ""])}
-                        >
-                            <AddCircleTwoToneIcon />
-                        </IconButton>
-                    </>
-                </FormGroup>
-                <FormGroup>
-                    <Label for="price">Price</Label>
-                    <InputGroup>
-                        <InputGroupAddon addonType="prepend">
-                            <InputGroupText>₹</InputGroupText>
-                        </InputGroupAddon>
-                        <Input type="text" name="price" placeholder="Enter the price."
-                            {...formik.getFieldProps("price")}
+        <>
+            <NavBar />
+            <div className="form">
+                <h2>Product Details</h2>
+                <Form onSubmit={formik.handleSubmit}>
+                    <FormGroup>
+                        <Label for="name">Name</Label>
+                        <Input type="text" name="name" placeholder="Enter the product name."
+                            {...formik.getFieldProps("name")}
                             invalid={
-                                formik.touched.price && formik.errors.price !== undefined
+                                formik.touched.name && formik.errors.name !== undefined
                             }
                         />
                         <FormFeedback>
-                            {formik.touched.price && formik.errors.price}
+                            {formik.touched.name && formik.errors.name}
                         </FormFeedback>
-                    </InputGroup>
-                </FormGroup>
+                    </FormGroup>
+                    <FormGroup>
+                        <Label for="description">Description</Label>
+                        <Input type="textarea" className="textarea" name="description" placeholder="Add Description." rows="3"
+                            {...formik.getFieldProps("description")}
+                            invalid={
+                                formik.touched.description && formik.errors.description !== undefined
+                            }
+                        />
+                        <FormFeedback>
+                            {formik.touched.description && formik.errors.description}
+                        </FormFeedback>
+                    </FormGroup>
+                    <FormGroup>
+                        <Label for="category">Category</Label>
+                        <CustomInput
+                            type="select"
+                            name="categorySelect"
+                            id="customInput"
+                            onChange={e => setCategory(e.target.value)}
+                            value={category}
+                        >
+                            <option value="mens apparel">Men's Apperal</option>
+                            <option value="kids apparel">Kid's Apperal</option>
+                            <option value="womens apparel">Women's Apperal</option>
+                        </CustomInput>
+                    </FormGroup>
+                    <FormGroup>
+                        <Label for="image">Image</Label>
+                        <>
+                            {count.map(Tf)}
+                            <IconButton
+                                style={{ outline: "none" }}
+                                onClick={() => setCount(old => [...old, ""])}
+                            >
+                                <AddCircleTwoToneIcon />
+                            </IconButton>
+                        </>
+                    </FormGroup>
+                    <FormGroup>
+                        <Label for="price">Price</Label>
+                        <InputGroup>
+                            <InputGroupAddon addonType="prepend">
+                                <InputGroupText>₹</InputGroupText>
+                            </InputGroupAddon>
+                            <Input type="text" name="price" placeholder="Enter the price."
+                                {...formik.getFieldProps("price")}
+                                invalid={
+                                    formik.touched.price && formik.errors.price !== undefined
+                                }
+                            />
+                            <FormFeedback>
+                                {formik.touched.price && formik.errors.price}
+                            </FormFeedback>
+                        </InputGroup>
+                    </FormGroup>
 
-                <FormGroup>
-                    <legend>Size</legend>
-                    <RadioGroup aria-label="size" name="size" value={cat} onChange={handleChangeR}>
-                        <FormControlLabel value="kids" control={<Radio />} label="For Kids" />
-                        <FormControlLabel value="adult" control={<Radio />} label="For Adults" />
-                    </RadioGroup>
-                </FormGroup>
-                <p>Size: {JSON.stringify(cSelected)}</p>
-                {cat === "kids" &&
-                    <FormGroup check>
-                        {["6-12", "18-24", "3-4", "5-6", "7-8", "9-10", "11-12", "13-14"].map(chkBOx)}
+                    <FormGroup>
+                        <legend>Size</legend>
+                        <RadioGroup aria-label="size" name="size" value={cat} onChange={handleChangeR}>
+                            <FormControlLabel value="kids" control={<Radio />} label="For Kids" />
+                            <FormControlLabel value="adult" control={<Radio />} label="For Adults" />
+                        </RadioGroup>
                     </FormGroup>
-                }
-                {cat === "adult" &&
-                    <FormGroup check>
-                        {["s", "m", "l", "xl", "xxl", "xxxl"].map(chkBOx)}
+                    <p>Size: {JSON.stringify(cSelected)}</p>
+                    {cat === "kids" &&
+                        <FormGroup check>
+                            {["6-12", "18-24", "3-4", "5-6", "7-8", "9-10", "11-12", "13-14"].map(chkBOx)}
+                        </FormGroup>
+                    }
+                    {cat === "adult" &&
+                        <FormGroup check>
+                            {["s", "m", "l", "xl", "xxl", "xxxl"].map(chkBOx)}
+                        </FormGroup>
+                    }
+                    <FormGroup>
+                        <Label for="discount">Discount</Label>
+                        <Grid container spacing={2} alignItems="center">
+                            <Grid item xs>
+                                <Slider
+                                    value={typeof value === "number" ? value : 0}
+                                    onChange={handleSliderChange}
+                                    getAriaValueText={valuetext}
+                                    aria-labelledby="discrete-slider"
+                                    valueLabelDisplay="auto"
+                                    step={1}
+                                    marks
+                                    min={0}
+                                    max={100}
+                                />
+                            </Grid>
+                            <Grid item>
+                                <Input2
+                                    value={value}
+                                    margin="dense"
+                                    onChange={handleInputChange}
+                                    onBlur={handleBlur}
+                                    inputProps={{
+                                        min: 0,
+                                        max: 100,
+                                        type: "number",
+                                        "aria-labelledby": "input-slider"
+                                    }}
+                                />
+                            </Grid>
+                        </Grid>
                     </FormGroup>
-                }
-                <FormGroup>
-                    <Label for="discount">Discount</Label>
-                    <Grid container spacing={2} alignItems="center">
-                        <Grid item xs>
-                            <Slider
-                                value={typeof value === "number" ? value : 0}
-                                onChange={handleSliderChange}
-                                getAriaValueText={valuetext}
-                                aria-labelledby="discrete-slider"
-                                valueLabelDisplay="auto"
-                                step={1}
-                                marks
-                                min={0}
-                                max={100}
-                            />
-                        </Grid>
-                        <Grid item>
-                            <Input2
-                                value={value}
-                                margin="dense"
-                                onChange={handleInputChange}
-                                onBlur={handleBlur}
-                                inputProps={{
-                                    min: 0,
-                                    max: 100,
-                                    type: "number",
-                                    "aria-labelledby": "input-slider"
-                                }}
-                            />
-                        </Grid>
-                    </Grid>
-                </FormGroup>
-                <Button outline color="primary" type="submit">Submit</Button>
-            </Form>
-            <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-                <Alert onClose={handleClose} severity={msg.type}>
-                    {msg.content}
-                </Alert>
-            </Snackbar>
-        </div>
+                    <Button outline color="primary" type="submit">Submit</Button>
+                </Form>
+                <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+                    <Alert onClose={handleClose} severity={msg.type}>
+                        {msg.content}
+                    </Alert>
+                </Snackbar>
+            </div>
+        </>
     )
 }
 

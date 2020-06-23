@@ -25,6 +25,8 @@ import Edit from "./Edit";
 
 import Delete from "./Delete";
 
+import NavBar from "../nav/TopNavbar";
+
 function Empty() {
   return (
     <FlexContainer withAppBar>
@@ -170,6 +172,7 @@ function Product({ match }) {
 
   return (
     <>
+      <NavBar />
       {
         loading ? <Loading /> : empty ? <Empty /> :
           <>

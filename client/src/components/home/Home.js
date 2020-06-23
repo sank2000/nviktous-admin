@@ -7,11 +7,15 @@ import Cards from "./Cards";
 // import Col from 'reactstrap/lib/Col';
 // import {Card, CardBody, CardTitle} from 'reactstrap';
 
+import NavBar from "../nav/TopNavbar";
+
 function Home() {
 	return (
-		<div className="Home">
-			<Cards />
-			{/* <div className="linechart">
+		<>
+			<NavBar />
+			<div className="Home">
+				<Cards />
+				{/* <div className="linechart">
 				<Row>
 					<Col md="6" className="column">
 						<Card>
@@ -52,7 +56,8 @@ function Home() {
 					</Col>
 				</Row>
         	</div> */}
-		</div>
+			</div>
+		</>
 	)
 }
 
