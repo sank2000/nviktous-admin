@@ -27,6 +27,7 @@ export default ({ match }) => {
   const [empty, setEmpty] = useState(true);
 
   useEffect(() => {
+    setLoad(true);
     axios.get("/order")
       .then(function (response) {
         let res = response.data.filter((val) => val.status.length === parseInt(match.params.id));

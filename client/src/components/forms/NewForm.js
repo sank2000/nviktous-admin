@@ -7,6 +7,8 @@ import axios from "axios";
 
 import Grid from "@material-ui/core/Grid";
 
+import PriorityHighIcon from '@material-ui/icons/PriorityHigh';
+
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
@@ -129,7 +131,7 @@ function NewForm() {
     const ValidationSchema = Yup.object({
         name: Yup.string().required("Field required !"),
         description: Yup.string().required("Field required !"),
-        price: Yup.number().required("Field required !")
+        price: Yup.number().typeError('price must be a number!').required("Field required !").min(0, "minimum price 0").max(10000, "maximum price 10000")
     });
 
     const formik = useFormik({
@@ -236,7 +238,7 @@ function NewForm() {
                         </CustomInput>
                     </FormGroup>
                     <FormGroup>
-                        <Label for="image">Image</Label>
+                        <Label for="image">Image</Label> <PriorityHighIcon onClick={() => window.open("https://nviktous.web.app/")} />
                         <>
                             {count.map(Tf)}
                             <IconButton

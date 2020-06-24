@@ -141,7 +141,6 @@ export default (props) => {
     axios.post("/order/status", prms)
       .then(function (response) {
         console.log(response.data);
-        setLoad(false);
         window.location.reload();
       })
       .catch(function (error) {
@@ -238,7 +237,7 @@ export default (props) => {
               </Grid>
             </Grid>
             {props.status.length <= 3 &&
-              <Button onClick={handleFun} style={{ float: "right", marginTop: '15px' }} variant="contained" color="primary">Next{load && <Spinner size="sm" color="primary" />} </Button>}
+              <Button disabled={load} onClick={handleFun} style={{ float: "right", marginTop: '15px' }} variant="contained" color="primary">Next{load && <Spinner size="sm" color="dark" />} </Button>}
           </Container>
         </Grid>
       </Grid>
