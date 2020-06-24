@@ -22,7 +22,9 @@ import Tooltip from '@material-ui/core/Tooltip';
 
 import axios from "axios";
 
-import { Button, Spinner } from 'reactstrap';
+import { Spinner } from 'reactstrap';
+
+import Button from '@material-ui/core/Button';
 
 const StyledTableCell = withStyles(theme => ({
   head: {
@@ -236,7 +238,7 @@ export default (props) => {
               </Grid>
             </Grid>
             {props.status.length <= 3 &&
-              <Button onClick={handleFun} style={{ float: "right", marginTop: '15px' }} outline color="primary">Next{load && <Spinner size="sm" color="primary" />} </Button>}
+              <Button onClick={handleFun} style={{ float: "right", marginTop: '15px' }} variant="contained" color="primary">Next{load && <Spinner size="sm" color="primary" />} </Button>}
           </Container>
         </Grid>
       </Grid>

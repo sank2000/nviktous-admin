@@ -172,7 +172,7 @@ function Product({ match }) {
 
   return (
     <>
-      <NavBar />
+      <NavBar route />
       {
         loading ? <Loading /> : empty ? <Empty /> :
           <>

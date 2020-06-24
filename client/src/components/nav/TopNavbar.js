@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-export default function AppBarTop() {
+export default function AppBarTop(props) {
 	const classes = useStyles();
 	const [anchorEl, setAnchorEl] = React.useState(null);
 	const open = Boolean(anchorEl);
@@ -54,6 +54,11 @@ export default function AppBarTop() {
 			})
 	}
 
+	let src = "./images/logo.png";
+	if (props.route) {
+		src = "." + src;
+	}
+
 	return (
 		<div className={classes.root}>
 			<AppBar position="static" style={{ backgroundColor: "#212529" }}>
@@ -61,7 +66,7 @@ export default function AppBarTop() {
 					<Sidebar />
 					<Typography variant="h6" className={classes.title}>
 						< img
-							src="./images/logo.png"
+							src={src}
 							style={{ width: "25px", height: "25px", marginRight: "10px" }}
 							alt=""
 						/> NVI<span style={{ color: "#FF7315" }}>KT</span>OUS

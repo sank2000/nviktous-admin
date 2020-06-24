@@ -45,7 +45,7 @@ export default ({ match }) => {
 
 
   return (<>
-    <NavBar />
+    <NavBar route />
     {load ? <Loading route /> : empty ? <Empty /> : <>
       <Container maxWidth="sm">
         {card.map((value, ind) => {
