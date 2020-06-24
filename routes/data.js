@@ -8,26 +8,29 @@ const Order = require('../model/order');
 
 
 router.get('/product', (req, res) => {
-  Product.find({}, (err, result) => {
+  if (!req.session.user) { res.send("unauthorised"); }
+  Product.countDocuments({}, (err, result) => {
     if (err) { console.log(err); return; }
-    res.send(result);
+    res.json({ count: result });
   })
 });
 
 
 router.get('/user', (req, res) => {
-  User.find({}, { password: 0 }, (err, result) => {
+  if (!req.session.user) { res.send("unauthorised"); }
+  User.countDocuments({}, (err, result) => {
     if (err) { console.log(err); return; }
-    res.send(result);
+    res.json({ count: result });
   })
 });
 
 
 
 router.get('/order', (req, res) => {
-  Order.find({}, (err, result) => {
+  if (!req.session.user) { res.send("unauthorised"); }
+  Order.countDocuments({}, (err, result) => {
     if (err) { console.log(err); return; }
-    res.send(result);
+    res.json({ count: result });
   })
 })
 
