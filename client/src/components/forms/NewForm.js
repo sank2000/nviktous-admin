@@ -1,5 +1,5 @@
 import React, { useState, Fragment } from "react";
-import { Button, Form, FormGroup, Label, Input, CustomInput, FormFeedback, InputGroup, InputGroupAddon, InputGroupText } from 'reactstrap';
+import { Form, FormGroup, Label, Input, CustomInput, FormFeedback, InputGroup, InputGroupAddon, InputGroupText } from 'reactstrap';
 import Slider from '@material-ui/core/Slider';
 import "./Form.css"
 
@@ -11,6 +11,8 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 
 import Input2 from "@material-ui/core/Input";
+
+import Button from '@material-ui/core/Button';
 
 
 import IconButton from "@material-ui/core/IconButton";
@@ -313,7 +315,7 @@ function NewForm() {
                             </Grid>
                         </Grid>
                     </FormGroup>
-                    <Button outline color="primary" type="submit">Submit</Button>
+                    <Button variant="contained" color="primary" type="submit">Submit</Button>
                 </Form>
                 <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
                     <Alert onClose={handleClose} severity={msg.type}>
