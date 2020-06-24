@@ -13,7 +13,9 @@ const userSchema = new mongoose.Schema(
     favItem: { type: Array, default: [] },
     card: { type: Array, default: [] },
     items: { type: Array, default: [] }
-  }
+  }, {
+  timestamps: true
+}
 )
 
 
