@@ -9,6 +9,7 @@ const Order = require('../model/order');
 
 
 router.get('/', (req, res) => {
+  if (!req.session.user) { res.send("unauthorised"); }
   Order.find({}, (err, result) => {
     if (err) { console.log(err); return; }
     res.send(result);
@@ -19,6 +20,7 @@ router.get('/', (req, res) => {
 
 
 router.post('/status', (req, res) => {
+  if (!req.session.user) { res.send("unauthorised"); }
   let status = JSON.parse(req.body.status);
   Order.findByIdAndUpdate(req.body.id, { status: status }, { new: true }, (err, result1) => {
     if (err) {

@@ -8,6 +8,7 @@ const User = require('../model/user');
 const Order = require('../model/order');
 
 router.get('/', (req, res) => {
+  if (!req.session.user) { res.send("unauthorised"); }
   Product.find({}, (err, result) => {
     if (err) { console.log(err); return; }
     res.send(result);
@@ -16,6 +17,7 @@ router.get('/', (req, res) => {
 
 
 router.post('/add', (req, res) => {
+  if (!req.session.user) { res.send("unauthorised"); }
   const P = new Product(
     {
       ...req.body,
@@ -36,6 +38,7 @@ router.post('/add', (req, res) => {
 });
 
 router.post("/findone", function (req, res) {
+  if (!req.session.user) { res.send("unauthorised"); }
   Product.findById(req.body.id, (err, result) => {
     if (err) {
       if (err instanceof mongoose.CastError) {
@@ -51,6 +54,7 @@ router.post("/findone", function (req, res) {
 
 
 router.post("/search", function (req, res) {
+  if (!req.session.user) { res.send("unauthorised"); }
   Product.find({ name: { '$regex': req.body.search, $options: 'i' } }, (err, result) => {
     if (err) { console.log(err); return; }
     res.send(result);
@@ -59,6 +63,7 @@ router.post("/search", function (req, res) {
 
 
 router.post("/update", function (req, res) {
+  if (!req.session.user) { res.send("unauthorised"); }
   const { id, ...data } = req.body;
   Product.findByIdAndUpdate(id, data, (err, result) => {
     if (err) {
@@ -75,6 +80,7 @@ router.post("/update", function (req, res) {
 });
 
 router.post("/update2", function (req, res) {
+  if (!req.session.user) { res.send("unauthorised"); }
   const { id, size, ...data } = req.body;
   let s = JSON.parse(size);
   Product.findByIdAndUpdate(id, { ...data, size: s }, (err, result) => {
@@ -93,6 +99,7 @@ router.post("/update2", function (req, res) {
 
 
 router.post("/delete", function (req, res) {
+  if (!req.session.user) { res.send("unauthorised"); }
   Product.findByIdAndDelete(req.body.id, (err, docs) => {
     if (err) {
       console.log(err); return;
