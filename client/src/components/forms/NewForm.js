@@ -165,7 +165,7 @@ function NewForm() {
                     size: JSON.stringify(cSelected),
                     category
                 });
-            axios.post("/product/add", prms)
+            axios.post("/pro/add", prms)
                 .then(function (response) {
                     setMsg({
                         type: "success",

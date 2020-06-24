@@ -146,7 +146,7 @@ function Product({ match }) {
 
   useEffect(() => {
     let prms = new URLSearchParams({ id: match.params.itemId });
-    axios.post("/product/findone", prms)
+    axios.post("/pro/findone", prms)
       .then(function (response) {
         console.log(response.data);
         if (response.data.length !== 0) {

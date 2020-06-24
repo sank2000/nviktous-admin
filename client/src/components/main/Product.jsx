@@ -66,7 +66,7 @@ export default () => {
     setLoad(true);
     setSearch("");
     setFound(true);
-    axios.get("/product")
+    axios.get("/pro")
       .then(function (response) {
         setProduct(response.data);
         setLoad(false);
@@ -83,11 +83,11 @@ export default () => {
   const getSearch = async () => {
     let params = new URLSearchParams({ search: search });
     if (search) {
-      const result = await axios.post("/product/search", params);
+      const result = await axios.post("/pro/search", params);
       return result;
     }
     else {
-      const result = await axios.post("/product");
+      const result = await axios.post("/pro");
       return result;
     }
   }
@@ -115,7 +115,7 @@ export default () => {
 
 
   useEffect(() => {
-    axios.get("/product")
+    axios.get("/pro")
       .then(function (response) {
         setProduct(response.data);
         setLoad(false);

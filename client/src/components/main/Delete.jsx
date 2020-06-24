@@ -28,7 +28,7 @@ export default (props) => {
   const handleSubmit = () => {
     setLoad(true);
     let params = new URLSearchParams({ id: props.id });
-    axios.post("/product/delete", params)
+    axios.post("/pro/delete", params)
       .then(function (response) {
         if (response.data.done) {
           handleClose();

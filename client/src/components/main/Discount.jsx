@@ -53,7 +53,7 @@ export default (props) => {
   const handleSubmit = () => {
     setLoad(true);
     let params = new URLSearchParams({ id: props.id, discount: value });
-    axios.post("/product/update", params)
+    axios.post("/pro/update", params)
       .then(function (response) {
         if (response.data.done) {
           handleClose();

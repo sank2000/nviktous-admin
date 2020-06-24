@@ -28,7 +28,7 @@ app.use(session({
 
 app.use("/data", data);
 
-app.use("/product", product);
+app.use("/pro", product);
 
 app.use("/order", order);
 

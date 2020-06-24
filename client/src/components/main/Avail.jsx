@@ -32,7 +32,7 @@ export default (props) => {
     else {
       params = new URLSearchParams({ id: props.id, available: false });
     }
-    axios.post("/product/update", params)
+    axios.post("/pro/update", params)
       .then(function (response) {
         if (response.data.done) {
           handleClose();
