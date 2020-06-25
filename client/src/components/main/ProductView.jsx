@@ -246,9 +246,9 @@ function Product({ match }) {
             </div>
             {ava && <Avail setAva={setAva} id={match.params.itemId} stock={!product.available} />}
 
-            {dis && <Discount setDis={setDis} id={match.params.itemId} discount={product.discount} />}
+            {dis && <Discount setDis={setDis} price={product.price} id={match.params.itemId} discount={product.discount} />}
 
-            {edit && <Edit setEdit={setEdit} name={product.name} cat={product.size[0].includes("-") ? "kids" : "adult"} size={product.size} description={product.description} price={product.price} id={match.params.itemId} />}
+            {edit && <Edit setEdit={setEdit} discount={product.discount} name={product.name} cat={product.size[0].includes("-") ? "kids" : "adult"} size={product.size} description={product.description} price={product.price} id={match.params.itemId} />}
 
             {del && <Delete setDel={setDel} id={match.params.itemId} />}
           </ >

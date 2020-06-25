@@ -119,7 +119,13 @@ export default (props) => {
 
   const handleSubmit = (values) => {
     setLoad(true);
-    let params = new URLSearchParams({ id: props.id, ...values, size: JSON.stringify(cSelected) });
+    let params = new URLSearchParams(
+      {
+        id: props.id,
+        ...values,
+        actPrice: values.price - (values.price * (props.discount / 100)),
+        size: JSON.stringify(cSelected)
+      });
     axios.post("/pro/update2", params)
       .then(function (response) {
         if (response.data.done) {

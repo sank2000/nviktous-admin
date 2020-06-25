@@ -166,6 +166,7 @@ function NewForm() {
                     ...values,
                     img: JSON.stringify(img),
                     discount: value,
+                    actPrice: values.price - (values.price * (value / 100)),
                     size: JSON.stringify(cSelected),
                     category
                 });
