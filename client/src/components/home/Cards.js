@@ -48,7 +48,7 @@ function Cards() {
 
 	}
 
-	const reducer = (accumulator, currentValue) => accumulator.amount + currentValue.amount;
+	const reducer = (accumulator, currentValue) => accumulator + currentValue.amount;
 
 	useEffect(() => {
 		update("/data/orderT", setTs);
@@ -62,9 +62,9 @@ function Cards() {
 		}, 50)
 		axios.get("/order")
 			.then(function (res) {
-				let amt = res.data.reduce(reducer, { amount: 0 });
+				let amt = res.data.reduce(reducer, 0);
 				clearInterval(inter);
-				setPrice(amt.amount);
+				setPrice(amt);
 			})
 			.catch(function (error) {
 				console.log(error);
