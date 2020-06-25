@@ -6,6 +6,8 @@ import Col from 'reactstrap/lib/Col';
 
 import axios from "axios";
 
+import Box from '@material-ui/core/Box';
+
 function Layout(props) {
 
 	return <Col lg="4" md="6" sm="4">
@@ -24,15 +26,45 @@ function Layout(props) {
 
 function Cards() {
 	const [tS, setTs] = useState(0);
+	const [tP, setTp] = useState(0);
+	const [tC, setTc] = useState(0);
+	const [toS, setToS] = useState(0);
+	const [toP, setToP] = useState(0);
+	const [toC, setToC] = useState(0);
+	const [price, setPrice] = useState(0);
+
+	function update(url, updateState, max) {
+		let inter = setInterval(() => {
+			updateState(Math.floor(Math.random() * Math.floor(100)));
+		}, 50)
+		axios.get(url)
+			.then(function (res) {
+				clearInterval(inter);
+				updateState(res.data.count);
+			})
+			.catch(function (error) {
+				console.log(error);
+			})
+
+	}
+
+	const reducer = (accumulator, currentValue) => accumulator.amount + currentValue.amount;
 
 	useEffect(() => {
-		let int1 = setInterval(() => {
-			setTs(old => old + 1);
+		update("/data/orderT", setTs);
+		update("/data/productT", setTp);
+		update("/data/userT", setTc);
+		update("/data/order", setToS);
+		update("/data/product", setToP);
+		update("/data/user", setToC);
+		let inter = setInterval(() => {
+			setPrice(Math.floor(Math.random() * Math.floor(10000)));
 		}, 50)
-		axios.get("/data/order")
+		axios.get("/order")
 			.then(function (res) {
-				clearInterval(int1);
-				setTs(res.data.count);
+				let amt = res.data.reduce(reducer, { amount: 0 });
+				clearInterval(inter);
+				setPrice(amt.amount);
 			})
 			.catch(function (error) {
 				console.log(error);
@@ -40,21 +72,30 @@ function Cards() {
 	}, [])
 
 	return (
-
-		<div className="cards">
-			<h3>Today</h3>
-			<Row>
-				<Layout title="Sale" count={tS} />
-				<Layout title="Product" count={20} />
-				<Layout title="Customer" count={30} />
-			</Row>
-			<h3>Total</h3>
-			<Row>
-				<Layout title="Sale" count={40} />
-				<Layout title="Product" count={50} />
-				<Layout title="Customer" count={60} />
-			</Row>
-		</div>
+		<>
+			<div className="cards">
+				<h3>Today</h3>
+				<Row>
+					<Layout title="Sale" count={tS} />
+					<Layout title="Product" count={tP} />
+					<Layout title="Customer" count={tC} />
+				</Row>
+				<h3>Total</h3>
+				<Row>
+					<Layout title="Sale" count={toS} />
+					<Layout title="Product" count={toP} />
+					<Layout title="Customer" count={toC} />
+				</Row>
+			</div>
+			<Box display="flex" p={1} bgcolor="grey.300">
+				<Box p={1} flexGrow={1}>
+					<h4>Total Earnings </h4>
+				</Box>
+				<Box p={1}>
+					<h4>₹ {price} </h4>
+				</Box>
+			</Box>
+		</>
 
 	)
 }

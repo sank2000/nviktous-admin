@@ -44,7 +44,7 @@ function NoRecord() {
   return (
     <Container height="40vh">
       <img src='./images/nodata.png' style={{ maxWidth: '80vw', maxHeight: '50vh', padding: '1rem' }} alt='404' />
-      <h1>No Record Found !!!</h1>
+      <h3>No Record Found !!!</h3>
     </Container>
   );
 }
